@@ -1,0 +1,30 @@
+export type Level = 'high' | 'medium' | 'low';
+export type GraphNode = { id: string; name: string; type: string; properties: Record<string, unknown> };
+export type GraphEdge = { id: string; source: string; target: string; type: string; properties: Record<string, unknown> };
+export type Graph = { nodes: GraphNode[]; edges: GraphEdge[]; node_count: number; edge_count: number };
+export type Provenance = { from: string; relationship: string; to: string; source: string };
+export type PathItem = { nodes: string[]; relationships: string[]; display: string; hops: number; target: string; provenance: Provenance[] };
+export type Blast = { asset: string; kind: string; sensitivity: string; risk: string; hops: number };
+export type AlertItem = { id: string; severity: string; category: string; source: string };
+export type EvidenceItem = { id: string; description: string; source: string; supports: string };
+export type Step = { name: string; duration_ms: number; count: number };
+export type Findings = {
+  identity: string; role: string | null; status: string | null; risk_level: Level; risk_reason: string;
+  paths: string[]; path_details: PathItem[]; assets: string[]; blast_radius: Blast[];
+  alerts: AlertItem[]; evidence: EvidenceItem[]; steps: Step[]; answer?: string; containment?: Containment | null;
+};
+export type Comparison = {
+  has_previous: boolean; baseline_time?: string | null; previous_count: number;
+  new_assets: string[]; removed_assets: string[]; new_paths: string[]; removed_paths: string[];
+  previous_risk?: string | null; risk_changed?: boolean;
+};
+export type Llm = { requested: boolean; status: 'ok' | 'unavailable' | 'off'; model?: string; text?: string | null; error?: string };
+export type Saved = { id: string; identity: string; created_at: string; findings: Findings };
+export type Run = { id: string; identity: string; created_at: string; findings: Findings; comparison: Comparison; llm?: Llm; caution?: string };
+export type IdentityInfo = { name: string; role: string | null; status: string | null; alerts: number; high_alerts: number };
+export type ImpactItem = { asset: string; kind: string; sensitivity: string; hops: number };
+export type Simulation = { target: string; depth: number; reachable: ImpactItem[]; dependents: ImpactItem[]; impacted: string[] };
+export type CutOption = { from: string; relationship: string; to: string; source: string; kind: 'access' | 'network'; paths_removed: number; paths_total: number; removes: string[] };
+export type Containment = { paths_total: number; recommended: CutOption[]; network_only: CutOption[]; options: CutOption[]; note: string };
+export type ActionRecord = { id: string; kind: string; from: string; relationship: string; to: string; edge_source: string | null; investigation_id: string | null; created_at: string; status: 'applied' | 'undone'; undone_at?: string | null };
+export type TriageItem = { identity: string; role: string; risk_level: Level; paths: number; alerts: number; proposal: { from: string; relationship: string; to: string; kind: string; paths_removed: number; paths_total: number }[] };
