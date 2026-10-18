@@ -8,6 +8,8 @@ Built for **Track 01: Agents That Act on Connected Data**.
 
 > **All data is synthetic.** Graph reachability is not proof of compromise, and this project is not meant to connect to production security systems.
 
+<img width="1542" height="390" alt="image" src="https://github.com/user-attachments/assets/6921fd3b-a689-4ede-8bca-c43cd905bde9" />
+
 
 
 ## What it does
@@ -20,8 +22,12 @@ Built for **Track 01: Agents That Act on Connected Data**.
 6. **Remember.** Each investigation is a node in the graph, linked to the identity it examined (`EXAMINED`) and the assets it found paths to (`FOUND_PATH`). Comparisons between runs report changes in paths, assets and risk level, and `GET /memory/asset/{asset}` answers "which investigations found a path to this asset?"
 7. **Account for it.** Every applied cut is an `Action` node linked to the investigation that proposed it (`RECOMMENDED`), carrying the source of the removed relationship. Undo restores the relationship with its original source. The audit trail survives a demo graph reset.
 
-![Containment](docs/images/containment.png)
-![Audit trail](docs/images/audit-trail.png)
+<img width="1583" height="927" alt="image" src="https://github.com/user-attachments/assets/29341f67-833d-4ff4-9f46-ca60cb668c52" />
+<img width="1582" height="961" alt="image" src="https://github.com/user-attachments/assets/f69f83d7-4856-48ca-934c-3f23a15eda31" />
+<img width="912" height="951" alt="image" src="https://github.com/user-attachments/assets/7d5687ba-ae9e-487a-a946-abf11dac825a" />
+<img width="1481" height="355" alt="image" src="https://github.com/user-attachments/assets/32269241-6186-4274-b4be-4bdeb5be2215" />
+<img width="1911" height="982" alt="image" src="https://github.com/user-attachments/assets/600f97d4-08ba-4e82-8357-d3c5090a522e" />
+
 
 ## Architecture
 
